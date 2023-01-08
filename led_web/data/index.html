@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+		<title>LED Color Selector</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="input.js"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/LambdaGaming/FastLED_Experiments/main/led_speech/app/src/main/res/mipmap-xxxhdpi/icon.png">
+	</head>
+	<body>
+		<h1>LED Color Selector</h1>
+		<div id="page1" class=container">
+			<hr><label for="colorinput">Select color:</label><br>
+			<input type="color" id="colorinput"><br><p>OR</p>
+			<label for="hexinput">Enter hex color:</label><br>
+			<input type="text" maxlength="6" id="hexinput"><br><hr>
+			<label for="ledinput">Individual LED input<br>Separate numbers with a comma<br>
+				or enter a range with a colon.<br>Leave blank to set all LEDs</label><br>
+			<input type="text" id="ledinput"><br><hr>
+			<button onclick="SendColor()">Submit</button><hr>
+			Page 1 of 2 <button class="pageButton" onclick="SetPage( 1, 2 )">Next -></button>
+		</div>
+		<div id="page2" class="container" style="display:none">
+			<hr><button style="width:150px" onclick="RandomColor( false )">Random Colors</button>
+			<br><br><button style="width:175px" onclick="RandomColor( true )">Random Single Color</button><hr>
+			<textarea id="luaBox" rows="10" cols="25">Enter Lua code here</textarea><br><br>
+			<button onclick="SubmitLuaCode()">Submit</button><hr><br>
+			<button class="pageButton" onclick="SetPage( 2, 1 )"><- Previous</button>Page 2 of 2
+		</div>
+	</body>
+</html>

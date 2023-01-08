@@ -1,0 +1,586 @@
+[
+  {
+	"name": "AliceBlue",
+	"color": 15792383
+  },
+  {
+	"name": "AntiqueWhite",
+	"color": 16444375
+  },
+  {
+	"name": "Aqua",
+	"color": 65535
+  },
+  {
+	"name": "Aquamarine",
+	"color": 8388564
+  },
+  {
+	"name": "Azure",
+	"color": 15794175
+  },
+  {
+	"name": "Beige",
+	"color": 16119260
+  },
+  {
+	"name": "Bisque",
+	"color": 16770244
+  },
+  {
+	"name": "Black",
+	"color": 0
+  },
+  {
+	"name": "BlanchedAlmond",
+	"color": 16772045
+  },
+  {
+	"name": "Blue",
+	"color": 255
+  },
+  {
+	"name": "BlueViolet",
+	"color": 9055202
+  },
+  {
+	"name": "Brown",
+	"color": 10824234
+  },
+  {
+	"name": "Burlywood",
+	"color": 14596231
+  },
+  {
+	"name": "CadetBlue",
+	"color": 6266528
+  },
+  {
+	"name": "Chartreuse",
+	"color": 8388352
+  },
+  {
+	"name": "Chocolate",
+	"color": 13789470
+  },
+  {
+	"name": "Coral",
+	"color": 16744272
+  },
+  {
+	"name": "CornflowerBlue",
+	"color": 6591981
+  },
+  {
+	"name": "Cornsilk",
+	"color": 16775388
+  },
+  {
+	"name": "Crimson",
+	"color": 14423100
+  },
+  {
+	"name": "Cyan",
+	"color": 65535
+  },
+  {
+	"name": "DarkBlue",
+	"color": 139
+  },
+  {
+	"name": "DarkCyan",
+	"color": 35723
+  },
+  {
+	"name": "DarkGoldenrod",
+	"color": 12092939
+  },
+  {
+	"name": "DarkGray",
+	"color": 11119017
+  },
+  {
+	"name": "DarkGreen",
+	"color": 25600
+  },
+  {
+	"name": "DarkKhaki",
+	"color": 12433259
+  },
+  {
+	"name": "DarkMagenta",
+	"color": 9109643
+  },
+  {
+	"name": "DarkOliveGreen",
+	"color": 5597999
+  },
+  {
+	"name": "DarkOrange",
+	"color": 16747520
+  },
+  {
+	"name": "LambdaOrange",
+	"color": 16734464
+  },
+  {
+	"name": "LambdaBlue",
+	"color": 17
+  },
+  {
+	"name": "DarkOrchid",
+	"color": 10040012
+  },
+  {
+	"name": "DarkRead",
+	"color": 9109504
+  },
+  {
+	"name": "DarkSalmon",
+	"color": 15308410
+  },
+  {
+	"name": "DarkSeaGreen",
+	"color": 9419919
+  },
+  {
+	"name": "DarkSlateBlue",
+	"color": 4734347
+  },
+  {
+	"name": "DarkSlateGray",
+	"color": 3100495
+  },
+  {
+	"name": "DarkTurquoise",
+	"color": 52945
+  },
+  {
+	"name": "DarkViolet",
+	"color": 9699539
+  },
+  {
+	"name": "DeepPink",
+	"color": 16716947
+  },
+  {
+	"name": "DeepSkyBlue",
+	"color": 49151
+  },
+  {
+	"name": "DimGray",
+	"color": 6908265
+  },
+  {
+	"name": "DodgerBlue",
+	"color": 2003199
+  },
+  {
+	"name": "Firebrick",
+	"color": 11674146
+  },
+  {
+	"name": "FloralWhite",
+	"color": 16775920
+  },
+  {
+	"name": "ForestGreen",
+	"color": 2263842
+  },
+  {
+	"name": "Fuchsia",
+	"color": 16711935
+  },
+  {
+	"name": "Gainsboro",
+	"color": 67156460
+  },
+  {
+	"name": "GhostWhite",
+	"color": 16316671
+  },
+  {
+	"name": "Gold",
+	"color": 16766720
+  },
+  {
+	"name": "Goldenrod",
+	"color": 14329120
+  },
+  {
+	"name": "Gray",
+	"color": 12500670
+  },
+  {
+	"name": "WebGray",
+	"color": 8421504
+  },
+  {
+	"name": "Green",
+	"color": 65280
+  },
+  {
+	"name": "WebGreen",
+	"color": 32768
+  },
+  {
+	"name": "GreenYellow",
+	"color": 11403055
+  },
+  {
+	"name": "Honeydew",
+	"color": 15794160
+  },
+  {
+	"name": "HotPink",
+	"color": 16738740
+  },
+  {
+	"name": "IndianRead",
+	"color": 13458524
+  },
+  {
+	"name": "Indigo",
+	"color": 4915330
+  },
+  {
+	"name": "Ivory",
+	"color": 16777200
+  },
+  {
+	"name": "Khaki",
+	"color": 15787660
+  },
+  {
+	"name": "Lavender",
+	"color": 15132410
+  },
+  {
+	"name": "LavenderBlush",
+	"color": 16773365
+  },
+  {
+	"name": "LawnGreen",
+	"color": 8190976
+  },
+  {
+	"name": "LemonChiffon",
+	"color": 16775885
+  },
+  {
+	"name": "LightBlue",
+	"color": 11393254
+  },
+  {
+	"name": "LightCoral",
+	"color": 15761536
+  },
+  {
+	"name": "LightCyan",
+	"color": 14745599
+  },
+  {
+	"name": "LightGoldenrod",
+	"color": 16448210
+  },
+  {
+	"name": "LightGray",
+	"color": 13882323
+  },
+  {
+	"name": "LightGreen",
+	"color": 9498256
+  },
+  {
+	"name": "LightPink",
+	"color": 16758465
+  },
+  {
+	"name": "LightSalmon",
+	"color": 16752762
+  },
+  {
+	"name": "LightSeaGreen",
+	"color": 2142890
+  },
+  {
+	"name": "LightSkyBlue",
+	"color": 8900346
+  },
+  {
+	"name": "LightSlateGray",
+	"color": 7833753
+  },
+  {
+	"name": "LightSteelBlue",
+	"color": 11584734
+  },
+  {
+	"name": "LightYellow",
+	"color": 16777184
+  },
+  {
+	"name": "Lime",
+	"color": 65280
+  },
+  {
+	"name": "LimeGreen",
+	"color": 3329330
+  },
+  {
+	"name": "Linen",
+	"color": 16445670
+  },
+  {
+	"name": "Magenta",
+	"color": 16711935
+  },
+  {
+	"name": "Maroon",
+	"color": 11546720
+  },
+  {
+	"name": "WebMaroon",
+	"color": 8388608
+  },
+  {
+	"name": "MediumAquamarine",
+	"color": 6737322
+  },
+  {
+	"name": "MediumBlue",
+	"color": 205
+  },
+  {
+	"name": "MediumOrchid",
+	"color": 12211667
+  },
+  {
+	"name": "MediumPurple",
+	"color": 9662683
+  },
+  {
+	"name": "MediumSeaGreen",
+	"color": 3978097
+  },
+  {
+	"name": "MediumSlateBlue",
+	"color": 8087790
+  },
+  {
+	"name": "MediumSpringGreen",
+	"color": 64154
+  },
+  {
+	"name": "MediumTurquoise",
+	"color": 4772300
+  },
+  {
+	"name": "MediumVioletRead",
+	"color": 13047173
+  },
+  {
+	"name": "MidnightBlue",
+	"color": 1644912
+  },
+  {
+	"name": "MintCream",
+	"color": 16121850
+  },
+  {
+	"name": "MistyRose",
+	"color": 16770273
+  },
+  {
+	"name": "Moccasin",
+	"color": 16770229
+  },
+  {
+	"name": "NavajoWhite",
+	"color": 16768685
+  },
+  {
+	"name": "NavyBlue",
+	"color": 128
+  },
+  {
+	"name": "OldLace",
+	"color": 16643558
+  },
+  {
+	"name": "Olive",
+	"color": 8421376
+  },
+  {
+	"name": "OliveDrab",
+	"color": 7048739
+  },
+  {
+	"name": "Orange",
+	"color": 16753920
+  },
+  {
+	"name": "OrangeRead",
+	"color": 16729344
+  },
+  {
+	"name": "Orchid",
+	"color": 14315734
+  },
+  {
+	"name": "PaleGoldenrod",
+	"color": 15657130
+  },
+  {
+	"name": "PaleGreen",
+	"color": 10025880
+  },
+  {
+	"name": "PaleTurquoise",
+	"color": 11529966
+  },
+  {
+	"name": "PaleVioletRead",
+	"color": 14381203
+  },
+  {
+	"name": "PapayaWhip",
+	"color": 16773077
+  },
+  {
+	"name": "PeachPuff",
+	"color": 16767673
+  },
+  {
+	"name": "Peru",
+	"color": 13468991
+  },
+  {
+	"name": "Pink",
+	"color": 16761035
+  },
+  {
+	"name": "Plum",
+	"color": 14524637
+  },
+  {
+	"name": "PowderBlue",
+	"color": 11591910
+  },
+  {
+	"name": "Purple",
+	"color": 10494192
+  },
+  {
+	"name": "WebPurple",
+	"color": 8388736
+  },
+  {
+	"name": "RebeccaPurple",
+	"color": 6697881
+  },
+  {
+	"name": "Read",
+	"color": 16711680
+  },
+  {
+	"name": "RosyBrown",
+	"color": 12357519
+  },
+  {
+	"name": "RoyalBlue",
+	"color": 4286945
+  },
+  {
+	"name": "SaddleBrown",
+	"color": 9127187
+  },
+  {
+	"name": "Salmon",
+	"color": 16416882
+  },
+  {
+	"name": "SandyBrown",
+	"color": 10032864
+  },
+  {
+	"name": "SeaGreen",
+	"color": 3050327
+  },
+  {
+	"name": "Seashell",
+	"color": 16774638
+  },
+  {
+	"name": "Sienna",
+	"color": 10506797
+  },
+  {
+	"name": "Silver",
+	"color": 12632256
+  },
+  {
+	"name": "SkyBlue",
+	"color": 8900331
+  },
+  {
+	"name": "SlateBlue",
+	"color": 6970061
+  },
+  {
+	"name": "Snow",
+	"color": 16775930
+  },
+  {
+	"name": "SpringGreen",
+	"color": 65407
+  },
+  {
+	"name": "SteelBlue",
+	"color": 4620980
+  },
+  {
+	"name": "Tan",
+	"color": 13808780
+  },
+  {
+	"name": "Teal",
+	"color": 32896
+  },
+  {
+	"name": "Thistle",
+	"color": 14204888
+  },
+  {
+	"name": "Tomato",
+	"color": 16737095
+  },
+  {
+	"name": "Turquoise",
+	"color": 4251856
+  },
+  {
+	"name": "Violet",
+	"color": 15631086
+  },
+  {
+	"name": "Wheat",
+	"color": 16113331
+  },
+  {
+	"name": "White",
+	"color": 16777215
+  },
+  {
+	"name": "WhiteSmoke",
+	"color": 16119285
+  },
+  {
+	"name": "Yellow",
+	"color": 16776960
+  },
+  {
+	"name": "YellowGreen",
+	"color": 10145074
+  }
+]
