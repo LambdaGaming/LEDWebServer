@@ -25,4 +25,4 @@ This is a small .NET 6 app that was made as a simple example of how a program co
 This is a Python program that reads the color of random pixels on the user's screen and applies them to the LED string every 10 seconds. Having the LED string setup in a dark room while playing games with unique color pallets provides a surprisingly atmospheric experience.
 
 # Color Voice Input (led_speech)
-This is an Android app written in Kotlin that functions similarly to the .NET app but takes a voice input instead of text. There is a predefined list of colors that the user can say. Eventually I might make the list larger or use a built-in list if one exists.
+This is an Android app written in Kotlin that functions similarly to the .NET app but takes a voice input instead of text. There is a predefined list of colors based off the one found in .NET that the user can say.
