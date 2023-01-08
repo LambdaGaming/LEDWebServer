@@ -10,17 +10,11 @@ delay( 500 ); --The semicolon acts as a separator to prevent garbage data from b
 ColorSwitch = ColorSwitch or false
 for i=0,199 do
 	if ColorSwitch then
-		if i % 2 == 0 then
-			SetColor( i, 0xFF5900 )
-		else
-			SetColor( i, 0 )
-		end
+		local even = i % 2 == 0 
+		SetColor( i, even and 0xFF5900 or 0 )
 	else
-		if i % 2 == 1 then
-			SetColor( i, 0xFF5900 )
-		else
-			SetColor( i, 0 )
-		end
+		local odd = i % 2 == 1
+		SetColor( i, odd and 0xFF5900 or 0 )
 	end
 end
 ColorSwitch = not ColorSwitch
