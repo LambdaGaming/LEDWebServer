@@ -22,7 +22,7 @@ static int SetColor( lua_State *lua_state )
 {
   int index = luaL_checkinteger( lua_state, 1 );
   int color = luaL_checkinteger( lua_state, 2 );
-  if ( index > NUM_LEDS - 1 )
+  if ( index > NUM_LEDS - 1 || index < 0 )
   {
     luaL_error( lua_state, "LED index is out of range." );
     return 0;
