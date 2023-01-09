@@ -12,7 +12,7 @@ function SubmitLuaCode() {
 	var code = document.getElementById( "luaBox" )
 	var connect = new XMLHttpRequest()
 	connect.open( "POST", "/anim", true )
-	connect.setRequestHeader( "Content-Type", "text/plain" )
+	connect.setRequestHeader( "Content-Type", "text/javascript" )
 	connect.send( code.value )
 }
 
