@@ -22,23 +22,28 @@ PushColors()
 delay( 1000 );
 
 --Snake that goes around the light string
-SnakeTable = SnakeTable or { 0xFF, 0xFF0000, 0xFF00, 0xFFFF, 0xFFFF00, 0xFF00FF, 0xFFFFFF }
-Snake = Snake or 0
-Snake2 = Snake2 or 10
+SnakeTable = SnakeTable or { 0xFF, 0xFF0000, 0xFF00, 0xFFFF, 0xFFFF00, 0xFF00FF, 0xFFFFFF, 0xFF5900 }
 SnakeIndex = SnakeIndex or 1
+Snake = Snake or 0
 if Snake > 199 then Snake = 0 end
-if Snake2 > 199 then Snake2 = 0 end
-if SnakeIndex > 7 then SnakeIndex = 1 end
+if SnakeIndex > 8 then SnakeIndex = 1 end
 SetColor( Snake, SnakeTable[SnakeIndex] )
-SetColor( Snake2, SnakeTable[SnakeIndex] )
+if Snake > 10 then
+	for i=1,10 do
+		SetColor( Snake - i, SnakeTable[SnakeIndex] )
+	end
+end
 if Snake == 0 then
 	SetColor( 199, 0 )
+	for i=1,10 do
+		SetColor( 199 - i, 0 )
+	end
 	SnakeIndex = SnakeIndex + 1
 else
-	SetColor( Snake - 1, 0 )
-	SetColor( Snake - 10, 0 )
+	if Snake > 10 then
+		SetColor( Snake - 11, 0 )
+	end
 end
-Snake = Snake + 1
-Snake2 = Snake + 10
 PushColors()
+Snake = Snake + 1
 delay( 50 );

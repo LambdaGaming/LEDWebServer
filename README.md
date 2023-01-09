@@ -11,9 +11,19 @@ This is the main project that started out with some experiments on a cheap fairy
   - Example 1: `0:199:2` will set every even-numbered LED
   - Example 2: `0,1,2,3,4` will set the first five LEDs
   - Example 3: `0:4` will do the same as example 2
-- Animations are also supported through Lua (WIP and not fully implemented yet)
+- Animations are also supported through Lua
   - Lua code is entered from the textbox on the second page, and sent to the server via a POST request
-  - Custom functions include: `SetSolidColor( color )`, `SetColor( index, color )`, `PushColors()`, and `delay( ms )`
+  - There are five custom Lua functions currently implemented:
+    - SetSolidColor( color )
+      - Sets a single color for the whole string, color must be a number
+    - SetColor( index, color )
+      - Sets a color for a single LED of the specified index
+    - PushColors()
+      - Used to apply colors after changing them with the SetColor() function
+    - delay( ms )
+      - Functions exactly the same as the Arduino function of the same name
+    - CurTime()
+      - Functions exactly the same as the millis() Arduino function
   - The script is constantly being executed in the Arduino loop function, so global variables need to be used in order to save information outside of a single loop
   - Scripts currently need to end with a semicolon due to the way they come through on the backend
   - Some examples can be found [here](led_web/examples.lua)
