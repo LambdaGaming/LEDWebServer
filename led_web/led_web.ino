@@ -57,6 +57,18 @@ static int CurTime( lua_State *lua_state )
   return 1;
 }
 
+static int HeatColor_Lua( lua_State *lua_state )
+{
+  int temp = luaL_checkinteger( lua_state, 1 );
+  lua_pushnumber( lua_state, ( lua_Number ) DeconstructCRGB( HeatColor( ( uint8_t ) temp ) ) );
+  return 1;
+}
+
+int DeconstructCRGB( CRGB color )
+{
+  return ( ( color.r & 0xFF ) << 16 ) | ( ( color.g & 0xFF ) << 8 ) | ( color.b & 0xFF );
+}
+
 void HandleBody( AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total )
 {
   String script = ( char* ) data;
@@ -97,6 +109,7 @@ void setup()
   lua.Lua_register( "PushColors", ( const lua_CFunction ) &PushColors );
   lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
   lua.Lua_register( "CurTime", ( const lua_CFunction ) &CurTime );
+  lua.Lua_register( "HeatColor", ( const lua_CFunction ) &HeatColor_Lua );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
