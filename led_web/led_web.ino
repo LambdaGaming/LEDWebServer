@@ -52,7 +52,7 @@ static int LuaDelay( lua_State *lua_state )
   return 0;
 }
 
-static int CurTime( lua_State *lua_state )
+static int LuaMillis( lua_State *lua_state )
 {
   lua_pushnumber( lua_state, ( lua_Number ) millis() );
   return 1;
@@ -110,7 +110,7 @@ void setup()
   lua.Lua_register( "SetSolidColor", ( const lua_CFunction ) &SetSolidColor );
   lua.Lua_register( "PushColors", ( const lua_CFunction ) &PushColors );
   lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
-  lua.Lua_register( "CurTime", ( const lua_CFunction ) &CurTime );
+  lua.Lua_register( "millis", ( const lua_CFunction ) &LuaMillis );
   lua.Lua_register( "HeatColor", ( const lua_CFunction ) &HeatColor_Lua );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
