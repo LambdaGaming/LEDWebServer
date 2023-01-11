@@ -47,3 +47,11 @@ end
 PushColors()
 Snake = Snake + 1
 delay( 50 );
+
+--Simple example of how the HeatColor function is used
+for i=0,199 do
+	local rand = math.random( 0, 255 )
+	SetColor( i, HeatColor( rand ) )
+end
+PushColors()
+delay( 30 );
