@@ -17,6 +17,7 @@ const char *password = "";
 AsyncWebServer server( 80 );
 LuaWrapper lua;
 String LuaScript = "";
+bool ScriptActive = false;
 
 static int SetColor( lua_State *lua_state )
 {
@@ -74,6 +75,7 @@ void HandleBody( AsyncWebServerRequest *request, uint8_t *data, size_t len, size
   String script = ( char* ) data;
   int i = script.indexOf( ';' );
   LuaScript = script.substring( 0, i ); // Filter out garbage data that breaks the script
+  ScriptActive = true;
 }
 
 void setup()
@@ -116,7 +118,7 @@ void setup()
 	} );
 
 	server.on( "/state", HTTP_POST, []( AsyncWebServerRequest *request ) {
-    LuaScript = "";
+    ScriptActive = false;
 		if ( request->hasParam( "color" ) )
 		{
 			int color = request->getParam( "color" )->value().toInt();
@@ -172,7 +174,7 @@ void setup()
 
 void loop()
 {
-  if ( LuaScript.length() > 0 )
+  if ( ScriptActive )
   {
     lua.Lua_dostring( &LuaScript );
   }
