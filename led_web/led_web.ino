@@ -61,9 +61,16 @@ static int LuaMillis( lua_State *lua_state )
 
 static int HeatColor_Lua( lua_State *lua_state )
 {
-  int temp = luaL_checkinteger( lua_state, 1 );
-  lua_pushnumber( lua_state, ( lua_Number ) DeconstructCRGB( HeatColor( ( uint8_t ) temp ) ) );
+  uint8_t temp = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  lua_pushnumber( lua_state, ( lua_Number ) DeconstructCRGB( HeatColor( temp ) ) );
   return 1;
+}
+
+static int FadeToBlackBy( lua_State *lua_state )
+{
+  uint8_t t = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  fadeToBlackBy( leds, NUM_LEDS, t );
+  return 0;
 }
 
 int DeconstructCRGB( CRGB color )
@@ -113,6 +120,7 @@ void setup()
   lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
   lua.Lua_register( "millis", ( const lua_CFunction ) &LuaMillis );
   lua.Lua_register( "HeatColor", ( const lua_CFunction ) &HeatColor_Lua );
+  lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
