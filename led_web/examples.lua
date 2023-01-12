@@ -55,3 +55,9 @@ for i=0,199 do
 end
 PushColors()
 delay( 30 );
+
+--Simple FadeToBlackBy example
+local rand = math.random( 0, 199 )
+SetColor( rand, 0xFFFFFF )
+PushColors()
+FadeToBlackBy( 10 );

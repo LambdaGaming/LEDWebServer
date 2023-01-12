@@ -25,3 +25,8 @@
 - `temp` argument must be a number from 1 to 255
 - 1 is the coldest (dark red), and 255 is the hottest (white)
 - 0 is also valid but returns black
+
+# FadeToBlackBy( brightness )
+- Gradually fades LEDs to black by reducing their brightness by the specified amount
+- `brightness` argument must be a number from 0 to 255
+- 0 doesn't reduce the brightness at all, at 255 reduces the brightness of an LED in a single frame
