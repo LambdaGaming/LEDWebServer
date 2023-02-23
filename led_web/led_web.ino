@@ -79,6 +79,21 @@ static int SetBrightness( lua_State *lua_state )
   return 0;
 }
 
+static int SetColorHSV( lua_State *lua_state )
+{
+  int index = luaL_checkinteger( lua_state, 1 );
+  uint8_t hue = ( uint8_t ) luaL_checkinteger( lua_state, 2 );
+  uint8_t sat = ( uint8_t ) luaL_checkinteger( lua_state, 3 );
+  uint8_t val = ( uint8_t ) luaL_checkinteger( lua_state, 4 );
+  if ( index > NUM_LEDS - 1 || index < 0 )
+  {
+    luaL_error( lua_state, "LED index is out of range." );
+    return 0;
+  }
+  leds[index] = CHSV( hue, sat, val );
+  return 0;
+}
+
 int DeconstructCRGB( CRGB color )
 {
   return ( ( color.r & 0xFF ) << 16 ) | ( ( color.g & 0xFF ) << 8 ) | ( color.b & 0xFF );
@@ -128,6 +143,7 @@ void setup()
   lua.Lua_register( "HeatColor", ( const lua_CFunction ) &LuaHeatColor );
   lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
   lua.Lua_register( "SetBrightness", ( const lua_CFunction ) &SetBrightness );
+  lua.Lua_register( "SetColorHSV", ( const lua_CFunction ) &SetColorHSV );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
