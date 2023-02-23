@@ -61,3 +61,29 @@ local rand = math.random( 0, 199 )
 SetColor( rand, 0xFFFFFF )
 PushColors()
 FadeToBlackBy( 10 );
+
+--Single color pulsating effect using SetBrightness
+local b = math.floor( math.abs( 50 * math.sin( ( millis() * 0.001 ) * 0.5 ) ) )
+SetBrightness( b )
+SetSolidColor( 0xFF5900 );
+
+--Port of the Cylon FastLED example, minus the fading
+Hue = Hue or 0
+for i=0,199 do
+	Hue = Hue + 1
+	SetColorHSV( i, Hue, 255, 255 )
+	PushColors()
+	delay( 10 )
+end
+for i=199,0,-1 do
+	Hue = Hue + 1
+	SetColorHSV( i, Hue, 255, 255 )
+	PushColors()
+	delay( 10 )
+end;
+
+--Simple solid color wheel cycle
+Hue = Hue or 0
+SetSolidColorHSV( Hue, 255, 255 )
+Hue = Hue + 1
+delay( 10 );
