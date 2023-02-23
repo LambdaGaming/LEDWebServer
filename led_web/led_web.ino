@@ -7,7 +7,6 @@
 
 #define NUM_LEDS 200
 #define DATA_PIN 5
-#define IR_PIN 25
 #define CHIPSET WS2812
 #define RGB_ORDER RGB
 
@@ -59,17 +58,24 @@ static int LuaMillis( lua_State *lua_state )
   return 1;
 }
 
-static int HeatColor_Lua( lua_State *lua_state )
+static int LuaHeatColor( lua_State *lua_state )
 {
-  uint8_t temp = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
-  lua_pushnumber( lua_state, ( lua_Number ) DeconstructCRGB( HeatColor( temp ) ) );
+  uint8_t value = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  lua_pushnumber( lua_state, ( lua_Number ) DeconstructCRGB( HeatColor( value ) ) );
   return 1;
 }
 
 static int FadeToBlackBy( lua_State *lua_state )
 {
-  uint8_t t = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
-  fadeToBlackBy( leds, NUM_LEDS, t );
+  uint8_t value = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  fadeToBlackBy( leds, NUM_LEDS, value );
+  return 0;
+}
+
+static int SetBrightness( lua_State *lua_state )
+{
+  uint8_t value = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  FastLED.setBrightness( value );
   return 0;
 }
 
@@ -119,8 +125,9 @@ void setup()
   lua.Lua_register( "PushColors", ( const lua_CFunction ) &PushColors );
   lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
   lua.Lua_register( "millis", ( const lua_CFunction ) &LuaMillis );
-  lua.Lua_register( "HeatColor", ( const lua_CFunction ) &HeatColor_Lua );
+  lua.Lua_register( "HeatColor", ( const lua_CFunction ) &LuaHeatColor );
   lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
+  lua.Lua_register( "SetBrightness", ( const lua_CFunction ) &SetBrightness );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
