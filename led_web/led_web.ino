@@ -94,6 +94,15 @@ static int SetColorHSV( lua_State *lua_state )
   return 0;
 }
 
+static int SetSolidColorHSV( lua_State *lua_state )
+{
+  uint8_t hue = ( uint8_t ) luaL_checkinteger( lua_state, 1 );
+  uint8_t sat = ( uint8_t ) luaL_checkinteger( lua_state, 2 );
+  uint8_t val = ( uint8_t ) luaL_checkinteger( lua_state, 3 );
+  FastLED.showColor( CHSV( hue, sat, val ) );
+  return 0;
+}
+
 int DeconstructCRGB( CRGB color )
 {
   return ( ( color.r & 0xFF ) << 16 ) | ( ( color.g & 0xFF ) << 8 ) | ( color.b & 0xFF );
@@ -144,6 +153,7 @@ void setup()
   lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
   lua.Lua_register( "SetBrightness", ( const lua_CFunction ) &SetBrightness );
   lua.Lua_register( "SetColorHSV", ( const lua_CFunction ) &SetColorHSV );
+  lua.Lua_register( "SetSolidColorHSV", ( const lua_CFunction ) &SetSolidColorHSV );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
