@@ -8,10 +8,11 @@ function SendURL( url ) {
 	connect.send()
 }
 
-function SubmitLuaCode() {
+function SubmitLuaCode( loop ) {
 	var code = document.getElementById( "luaBox" )
 	var connect = new XMLHttpRequest()
-	connect.open( "POST", "/anim", true )
+	var url = loop ? "/anim" : "/anim?single=1"
+	connect.open( "POST", url, true )
 	connect.setRequestHeader( "Content-Type", "text/javascript" )
 	connect.send( code.value )
 }

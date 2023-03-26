@@ -23,8 +23,9 @@
 		<div id="page2" class="container" style="display:none">
 			<hr><button style="width:150px" onclick="RandomColor( false )">Random Colors</button>
 			<br><br><button style="width:175px" onclick="RandomColor( true )">Random Single Color</button><hr>
-			<textarea id="luaBox" rows="10" cols="25">Enter Lua code here</textarea><br><br>
-			<button onclick="SubmitLuaCode()">Submit</button><hr><br>
+			<textarea id="luaBox" rows="10" cols="25" placeholder="Enter Lua code here"></textarea><br><br>
+			<button onclick="SubmitLuaCode()">Run Once</button>
+			<button onclick="SubmitLuaCode( true )">Run Loop</button><hr><br>
 			<button class="pageButton" onclick="SetPage( 2, 1 )"><- Previous</button>Page 2 of 2
 		</div>
 	</body>
