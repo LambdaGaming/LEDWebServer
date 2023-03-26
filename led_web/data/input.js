@@ -106,3 +106,9 @@ function RandomColor( single ) {
 		SendURL( url )
 	}
 }
+
+function ApplyBrightness() {
+	var value = document.getElementById( "brightnessinput" ).value
+	var url = `/settings?brightness=${value}`
+	SendURL( url )
+}
