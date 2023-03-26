@@ -17,7 +17,6 @@ AsyncWebServer server( 80 );
 LuaWrapper lua;
 String LuaScript = "";
 bool ScriptActive = false;
-bool Debug = false;
 
 static int SetColor( lua_State *lua_state )
 {
@@ -200,11 +199,6 @@ void setup()
 			int brightness = request->getParam( "brightness" )->value().toInt();
 			FastLED.setBrightness( brightness );
 		}
-    else if ( request->hasParam( "debug" ) )
-    {
-      bool debug = request->getParam( "debug" )->value().toInt();
-      Debug = debug;
-    }
 		request->send( 200, "text/plain", "OK" );
 	} );
 
@@ -223,9 +217,6 @@ void loop()
 {
   if ( ScriptActive )
   {
-    if ( Debug )
-      Serial.println( lua.Lua_dostring( &LuaScript ) );
-    else
       lua.Lua_dostring( &LuaScript );
   }
 }
