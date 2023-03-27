@@ -12,11 +12,10 @@
 		<div id="page1" class=container">
 			<hr><label for="colorinput">Select color:</label><br>
 			<input type="color" id="colorinput"><br><p>OR</p>
-			<label for="hexinput">Enter hex color:</label><br>
-			<input type="text" maxlength="6" id="hexinput"><br><hr>
-			<label for="ledinput">Individual LED input<br>Separate numbers with a comma<br>
+			<input type="text" maxlength="6" id="hexinput" placeholder="Enter hex color"><br><hr>
+			<label for="ledinput"><h3>Individual LED Input</h3><br>Separate numbers with a comma<br>
 				or enter a range with a colon.<br>Leave blank to set all LEDs</label><br>
-			<input type="text" id="ledinput"><br><hr>
+			<input type="text" id="ledinput" placeholder="Ex: 0:199:2 or 0,1,2,3"><br><hr>
 			<button onclick="SendColor()">Submit</button><hr>
 			Page 1/3 <button class="pageButton" onclick="SetPage( 1, 2 )">Next -></button>
 		</div>
@@ -30,7 +29,7 @@
 			<button class="pageButton" onclick="SetPage( 2, 3 )">Next -></button>
 		</div>
 		<div id="page3" class="container" style="display:none">
-			<input type="number" maxlength="3" id="brightnessinput">
+			<hr><input type="number" maxlength="3" id="brightnessinput" placeholder="Enter number 0-255">
 			<br><br><button style="width:150px" onclick="ApplyBrightness()">Set Brightness</button><hr>
 			<button class="pageButton" onclick="SetPage( 3, 2 )"><- Previous</button>Page 3/3
 		</div>

@@ -19,6 +19,9 @@ hr {
 h1 {
 	color:#FF5900;
 }
+h3 {
+	margin:0;
+}
 button {
 	width:100px;
 	height:30px;
