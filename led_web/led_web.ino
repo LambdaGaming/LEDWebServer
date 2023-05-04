@@ -2,7 +2,7 @@
 #include <ESPmDNS.h>
 #include <SPIFFS.h>
 #include <WiFi.h>
-#include "lua_funcs.h"
+#include "lua_funcs.hpp"
 
 #define DATA_PIN 5
 #define CHIPSET WS2812
