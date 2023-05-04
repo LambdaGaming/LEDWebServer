@@ -93,22 +93,19 @@ int SetSolidColorHSV( lua_State *lua_state )
   return 0;
 }
 
-int LuaColorFromPalette( lua_State *lua_state )
+int FadeToColor( lua_State *lua_state )
 {
-  luaL_checktype( lua_state, 1, LUA_TTABLE );
-  uint8_t index = ( uint8_t ) luaL_checkinteger( lua_state, 2 );
-  lua_gettable( lua_state, 1 );
-  
-  int count = 0;
-  CRGBPalette16 colors;
-  lua_pushnil( lua_state );
-  while ( lua_next( lua_state, 1 ) != 0 )
+  int index = luaL_checkinteger( lua_state, 1 );
+  int color1 = luaL_checkinteger( lua_state, 2 );
+  int color2 = luaL_checkinteger( lua_state, 3 );
+  uint8_t frac = ( uint8_t ) luaL_checkinteger( lua_state, 4 );
+  if ( index > NUM_LEDS - 1 || index < 0 )
   {
-    colors[count] = ( int ) lua_tonumber( lua_state, -1 );
-    lua_pop( lua_state, 1 );
+    luaL_error( lua_state, "LED index is out of range." );
+    return 0;
   }
-  lua_pushnumber( lua_state, ColorFromPalette( colors, index ) );
-  return 1;
+  leds[index] = blend( color1, color2, frac );
+  return 0;
 }
 
 int FadeToColor( lua_State *lua_state )
