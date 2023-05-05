@@ -108,3 +108,22 @@ int FadeToColor( lua_State *lua_state )
   leds[index] = blend( finalColor1, color2, frac );
   return 0;
 }
+
+int LuaBeat( lua_State *lua_state )
+{
+  uint16_t bpm = ( uint16_t ) luaL_checkinteger( lua_state, 1 );
+  uint32_t timebase = ( uint32_t ) luaL_checkinteger( lua_state, 2 );
+  lua_pushnumber( lua_state, ( lua_Number ) beat8( bpm, timebase ) );
+  return 1;
+}
+
+int LuaBeatSin( lua_State *lua_state )
+{
+  uint16_t bpm = ( uint16_t ) luaL_checkinteger( lua_state, 1 );
+  uint8_t lowest = ( uint8_t ) luaL_checkinteger( lua_state, 2 );
+  uint8_t highest = ( uint8_t ) luaL_checkinteger( lua_state, 3 );
+  uint32_t timebase = ( uint32_t ) luaL_checkinteger( lua_state, 4 );
+  uint8_t offset = ( uint8_t ) luaL_checkinteger( lua_state, 5 );
+  lua_pushnumber( lua_state, ( lua_Number ) beatsin8( bpm, lowest, highest, timebase, offset ) );
+  return 1;
+}

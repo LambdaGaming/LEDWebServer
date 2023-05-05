@@ -66,6 +66,8 @@ void setup()
   lua.Lua_register( "SetColorHSV", ( const lua_CFunction ) &SetColorHSV );
   lua.Lua_register( "SetSolidColorHSV", ( const lua_CFunction ) &SetSolidColorHSV );
   lua.Lua_register( "FadeToColor", ( const lua_CFunction ) &FadeToColor );
+  lua.Lua_register( "beat", ( const lua_CFunction ) &LuaBeat );
+  lua.Lua_register( "beatsin", ( const lua_CFunction ) &LuaBeatSin );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
