@@ -104,11 +104,7 @@ int FadeToColor( lua_State *lua_state )
     luaL_error( lua_state, "LED index is out of range." );
     return 0;
   }
-  leds[index] = blend( color1, color2, frac );
+  CRGB finalColor1 = color1 < 0 ? leds[index] : CRGB( color1 );
+  leds[index] = blend( finalColor1, color2, frac );
   return 0;
-}
-
-int FadeToColor( lua_State *lua_state )
-{
-
 }
