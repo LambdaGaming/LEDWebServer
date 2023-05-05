@@ -87,3 +87,29 @@ Hue = Hue or 0
 SetSolidColorHSV( Hue, 255, 255 )
 Hue = Hue + 1
 delay( 10 );
+
+--Simple FadeToColor example that creates a static 2-color gradient
+for i=0,199 do
+	FadeToColor( i, 0xFF00, 0xFF, i )
+end
+PushColors();
+
+--More complex FadeToColor example that constantly fades between blue and green
+Frac = Frac or 0
+Reverse = Reverse or false
+for i=0,199 do
+	FadeToColor( i, 0xFF00, 0xFF, Frac )
+end
+if Reverse then
+	Frac = Frac - 1
+else
+	Frac = Frac + 1
+end
+if Frac <= 0 then
+	Frac = 0
+	Reverse = false
+elseif Frac >= 255 then
+	Frac = 255
+	Reverse = true
+end
+PushColors();

@@ -46,3 +46,11 @@
 - Will not take effect until the next `SetSolidColor()` or `PushColors()` call
 - `brightness` argument must be a whole number from 0 to 255
 - 0 is the darkest (black) and 255 is the brightest
+
+# FadeToColor( index, color1, color2, frac )
+- Fades a color to another color by a set amount
+- Will not take effect until `PushColors()` is called
+- `index` argument must be a number and must be within the range of the led array in your Arduino sketch
+- `color1` and `color2` arguments are the two colors to blend together; they must be a number
+- If `color1` argument is negative, it will take the color from the server's led array at the specified index
+- `frac` argument is the fraction of the blend to use; must be a number between 0 and 255
