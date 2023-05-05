@@ -94,22 +94,31 @@ for i=0,199 do
 end
 PushColors();
 
---More complex FadeToColor example that constantly fades between blue and green
-Frac = Frac or 0
-Reverse = Reverse or false
+--More complex FadeToColor example that constantly fades between blue and green using a sine wave
+local sin = beatsin( 30, 50, 255, 0, 0 )
 for i=0,199 do
-	FadeToColor( i, 0xFF00, 0xFF, Frac )
+	FadeToColor( i, 0xFF00, 0xFF, sin )
 end
-if Reverse then
-	Frac = Frac - 1
-else
-	Frac = Frac + 1
+PushColors();
+
+--Simplified snake using a sine wave and FadeToBlackBy
+local sin = math.floor( math.abs( 199 * math.sin( ( millis() * 0.001 ) * 0.2 ) ) )
+SetColor( sin, 0xFF00 )
+FadeToBlackBy( 10 )
+PushColors();
+
+--Waves of blue and cyan using beatsin, SetBrightness, and FadeToColor
+Colors = Colors or {}
+if #Colors == 0 then
+	for i=0,199 do
+		table.insert( Colors, math.random( 0, 255 ) )
+	end
 end
-if Frac <= 0 then
-	Frac = 0
-	Reverse = false
-elseif Frac >= 255 then
-	Frac = 255
-	Reverse = true
+local sin = beatsin( 30, 50, 255, 0, 0 )
+local sin2 = beatsin( 30, 1, 3, 0, 0 )
+for i=0,199 do
+	SetBrightness( sin )
+	FadeToColor( i, 0xFFFF, 0xFF, Colors[i + 1] )
+	Colors[i + 1] = Colors[i + 1] + sin2
 end
 PushColors();

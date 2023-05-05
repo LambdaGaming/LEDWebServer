@@ -54,3 +54,9 @@
 - `color1` and `color2` arguments are the two colors to blend together; they must be a number
 - If `color1` argument is negative, it will take the color from the server's led array at the specified index
 - `frac` argument is the fraction of the blend to use; must be a number between 0 and 255
+
+# beat( bpm, timebase )
+- Functions exactly the same as the beat8 FastLED function
+
+# beatsin( bpm, lowest, highest, timebase, offset )
+- Functions exactly the same as the beatsin8 FastLED function
