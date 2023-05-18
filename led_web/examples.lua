@@ -114,8 +114,8 @@ if #Colors == 0 then
 		table.insert( Colors, math.random( 0, 255 ) )
 	end
 end
-local sin = beatsin( 30, 50, 255, 0, 0 )
-local sin2 = beatsin( 30, 1, 3, 0, 0 )
+local sin = beatsin( 20, 50, 255, 0, 0 )
+local sin2 = beatsin( 20, 1, 3, 0, 0 )
 for i=0,199 do
 	SetBrightness( sin )
 	FadeToColor( i, 0xFFFF, 0xFF, Colors[i + 1] )
