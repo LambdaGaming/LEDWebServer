@@ -116,9 +116,9 @@ if #Colors == 0 then
 end
 local sin = beatsin( 20, 50, 255, 0, 0 )
 local sin2 = beatsin( 20, 1, 3, 0, 0 )
-for i=0,199 do
+for i=1,200 do
 	SetBrightness( sin )
-	FadeToColor( i, 0xFFFF, 0xFF, Colors[i + 1] )
-	Colors[i + 1] = Colors[i + 1] + sin2
+	FadeToColor( i - 1, 0xFFFF, 0xFF, Colors[i] )
+	Colors[i] = Colors[i] + sin2
 end
 PushColors();

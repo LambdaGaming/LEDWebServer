@@ -5,16 +5,17 @@ import requests
 import random
 import time
 
-WIDTH = 1920
-HEIGHT = 1080
-NUM_LEDS = 199 # Actually 200 but the IDs start at 0
+MODIFIER = 1 # Increase or decrease area of the screen without needing a specific number of pixels
+WIDTH = 1920 * MODIFIER
+HEIGHT = 1080 * MODIFIER
+NUM_LEDS = 200
 
 def GetPixels():
 	params = ""
 	then = time.perf_counter()
-	for i in range( NUM_LEDS ):
+	for i in range( NUM_LEDS - 1 ):
 		try:
-			color = pixel[random.randrange( 0, WIDTH ), random.randrange( 0, HEIGHT )]
+			color = pixel[random.randrange( 0, round( WIDTH ) ), random.randrange( 0, round( HEIGHT ) )]
 		except:
 			print( "Resolution changed. Aborting." )
 			return
