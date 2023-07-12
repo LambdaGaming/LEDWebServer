@@ -17,14 +17,17 @@ bool ScriptActive = false;
 
 void HandleBody( AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total )
 {
-  String script = ( char* ) data;
-  int i = script.indexOf( ';' );
-  LuaScript = script.substring( 0, i ); // Filter out garbage data that breaks the script
+	digitalWrite( LED_BUILTIN, HIGH );
+	String script = ( char* ) data;
+	int i = script.indexOf( ';' );
+	LuaScript = script.substring( 0, i ); // Filter out garbage data that breaks the script
 
-  if ( request->hasParam( "single" ) )
-    lua.Lua_dostring( &LuaScript );
-  else
-    ScriptActive = true;
+	if ( request->hasParam( "single" ) )
+		lua.Lua_dostring( &LuaScript );
+	else
+		ScriptActive = true;
+
+	digitalWrite( LED_BUILTIN, LOW );
 }
 
 void setup()
@@ -36,6 +39,7 @@ void setup()
 	Serial.println( ssid );
 	WiFi.begin( ssid, password );
 	MDNS.begin( "colorselector" );
+	pinMode( LED_BUILTIN, OUTPUT );
 	
 	if ( !SPIFFS.begin( true ) ) return;
 
@@ -55,26 +59,27 @@ void setup()
 	Serial.print( "IP address: " );
 	Serial.println( WiFi.localIP() );
 
-  lua.Lua_register( "SetColor", ( const lua_CFunction ) &SetColor );
-  lua.Lua_register( "SetSolidColor", ( const lua_CFunction ) &SetSolidColor );
-  lua.Lua_register( "PushColors", ( const lua_CFunction ) &PushColors );
-  lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
-  lua.Lua_register( "millis", ( const lua_CFunction ) &LuaMillis );
-  lua.Lua_register( "HeatColor", ( const lua_CFunction ) &LuaHeatColor );
-  lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
-  lua.Lua_register( "SetBrightness", ( const lua_CFunction ) &SetBrightness );
-  lua.Lua_register( "SetColorHSV", ( const lua_CFunction ) &SetColorHSV );
-  lua.Lua_register( "SetSolidColorHSV", ( const lua_CFunction ) &SetSolidColorHSV );
-  lua.Lua_register( "FadeToColor", ( const lua_CFunction ) &FadeToColor );
-  lua.Lua_register( "beat", ( const lua_CFunction ) &LuaBeat );
-  lua.Lua_register( "beatsin", ( const lua_CFunction ) &LuaBeatSin );
+	lua.Lua_register( "SetColor", ( const lua_CFunction ) &SetColor );
+	lua.Lua_register( "SetSolidColor", ( const lua_CFunction ) &SetSolidColor );
+	lua.Lua_register( "PushColors", ( const lua_CFunction ) &PushColors );
+	lua.Lua_register( "delay", ( const lua_CFunction ) &LuaDelay );
+	lua.Lua_register( "millis", ( const lua_CFunction ) &LuaMillis );
+	lua.Lua_register( "HeatColor", ( const lua_CFunction ) &LuaHeatColor );
+	lua.Lua_register( "FadeToBlackBy", ( const lua_CFunction ) &FadeToBlackBy );
+	lua.Lua_register( "SetBrightness", ( const lua_CFunction ) &SetBrightness );
+	lua.Lua_register( "SetColorHSV", ( const lua_CFunction ) &SetColorHSV );
+	lua.Lua_register( "SetSolidColorHSV", ( const lua_CFunction ) &SetSolidColorHSV );
+	lua.Lua_register( "FadeToColor", ( const lua_CFunction ) &FadeToColor );
+	lua.Lua_register( "beat", ( const lua_CFunction ) &LuaBeat );
+	lua.Lua_register( "beatsin", ( const lua_CFunction ) &LuaBeatSin );
 
 	server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
 		request->send( SPIFFS, "/index.html", String(), false );
 	} );
 
 	server.on( "/state", HTTP_POST, []( AsyncWebServerRequest *request ) {
-    ScriptActive = false;
+		digitalWrite( LED_BUILTIN, HIGH );
+		ScriptActive = false;
 		if ( request->hasParam( "color" ) )
 		{
 			int color = request->getParam( "color" )->value().toInt();
@@ -102,19 +107,22 @@ void setup()
 			FastLED.show();
 		}
 		request->send( 200, "text/plain", "OK" );
+		digitalWrite( LED_BUILTIN, LOW );
 	} );
 
-  server.on( "/anim", HTTP_POST, []( AsyncWebServerRequest *request ) {
-    request->send( 200 );
-  }, NULL, HandleBody );
+	server.on( "/anim", HTTP_POST, []( AsyncWebServerRequest *request ) {
+		request->send( 200 );
+	}, NULL, HandleBody );
 
 	server.on( "/settings", HTTP_POST, []( AsyncWebServerRequest * request ) {
+		digitalWrite( LED_BUILTIN, HIGH );
 		if ( request->hasParam( "brightness" ) )
 		{
 			int brightness = request->getParam( "brightness" )->value().toInt();
 			FastLED.setBrightness( brightness );
 		}
 		request->send( 200, "text/plain", "OK" );
+		digitalWrite( LED_BUILTIN, LOW );
 	} );
 
 	server.on( "/input.js", HTTP_GET, []( AsyncWebServerRequest *request ) {
@@ -130,8 +138,8 @@ void setup()
 
 void loop()
 {
-  if ( ScriptActive )
-  {
-      lua.Lua_dostring( &LuaScript );
-  }
+	if ( ScriptActive )
+	{
+			lua.Lua_dostring( &LuaScript );
+	}
 }
