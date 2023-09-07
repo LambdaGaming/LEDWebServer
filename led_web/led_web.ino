@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include "lua_funcs.hpp"
 
-#define DATA_PIN 5
+#define DATA_PIN 25
 #define CHIPSET WS2812
 #define RGB_ORDER RGB
 
