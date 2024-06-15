@@ -2,6 +2,7 @@
 #include <ESPmDNS.h>
 #include <SPIFFS.h>
 #include <WiFi.h>
+#include <WebSocketsServer.h>
 #include "lua_funcs.hpp"
 
 #define DATA_PIN 25
@@ -11,6 +12,7 @@
 const char *ssid = "";
 const char *password = "";
 AsyncWebServer server( 80 );
+WebSocketsServer webSocket = WebSocketsServer( 81 );
 LuaWrapper lua;
 String LuaScript = "";
 bool ScriptActive = false;
@@ -30,6 +32,45 @@ void HandleBody( AsyncWebServerRequest *request, uint8_t *data, size_t len, size
 	digitalWrite( LED_BUILTIN, LOW );
 }
 
+void WebSocketRequest( uint8_t num, WStype_t type, uint8_t *payload, size_t len )
+{
+	switch ( type )
+	{
+		case WStype_CONNECTED:
+		{
+			ScriptActive = false;
+			IPAddress ip = webSocket.remoteIP( num );
+			Serial.printf( "Client %u connected from %d.%d.%d.%d\n", num, ip[0], ip[1], ip[2], ip[3] );
+			break;
+		}
+		case WStype_DISCONNECTED:
+		{
+			Serial.printf( "Client %u disconnected\n", num );
+			break;
+		}
+		case WStype_BIN:
+		{
+			if ( len % 4 == 0 )
+			{
+				for ( int i = 0; i < len; i += 4 )
+				{
+					uint8_t r = payload[i + 1];
+					uint8_t g = payload[i + 2];
+					uint8_t b = payload[i + 3];
+					leds[payload[i]] = CRGB( r, g, b );
+				}
+				FastLED.show();
+			}
+			else
+			{
+				Serial.println( "Received malformed packet!" );
+			}
+			break;
+		}
+		default: break;
+	}
+}
+
 void setup()
 {
 	Serial.begin( 115200 );
@@ -39,6 +80,8 @@ void setup()
 	Serial.println( ssid );
 	WiFi.begin( ssid, password );
 	MDNS.begin( "colorselector" );
+	webSocket.begin();
+	webSocket.onEvent( WebSocketRequest );
 	pinMode( LED_BUILTIN, OUTPUT );
 	
 	if ( !SPIFFS.begin( true ) ) return;
@@ -139,7 +182,7 @@ void setup()
 void loop()
 {
 	if ( ScriptActive )
-	{
-			lua.Lua_dostring( &LuaScript );
-	}
+		lua.Lua_dostring( &LuaScript );
+	else
+		webSocket.loop();
 }
