@@ -21,11 +21,12 @@ with connect( "ws://colorselector.local:81" ) as ws:
 		while True:
 			pixel = ImageGrab.grab().load()
 			data = []
-			for p in range( RandomPixels ):
+			count = 0
+			for p in RandomPixels:
 				color = pixel[p[0], p[1]]
-				data.append( i )
+				data.append( count )
 				data.extend( ( color[0], color[1], color[2] ) )
-			print(data)
+				count += 1
 			ws.send( bytearray( data ) )
 			time.sleep( 0.01 )
 	except KeyboardInterrupt:
