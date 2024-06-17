@@ -5,14 +5,14 @@ from websockets.sync.client import connect
 import random
 import time
 
-MODIFIER = 1 # Increase or decrease area of the screen without needing a specific number of pixels
-WIDTH = 1920 * MODIFIER
-HEIGHT = 1080 * MODIFIER
+MODIFIER = 0.5 # Increase or decrease area of the screen without needing a specific number of pixels
+WIDTH = 1920
+HEIGHT = 1080
 NUM_LEDS = 200
 CENTER_W = WIDTH * 0.5
 CENTER_H = HEIGHT * 0.5
-MODE = 0
 
+# Reads a square of pixels in the center of the screen, the size of which depends on the amount of LEDs
 # There's definitely a better way of doing this but I'm bad at math
 def CalcSquare():
 	pixels = []
@@ -31,16 +31,22 @@ def CalcSquare():
 		pixels.append( [corners[1][0], corners[1][1] + i] )
 	return pixels
 
-
 def CalcRandomPixels():
 	pixels = []
 	for i in range( NUM_LEDS ):
-		randX = random.randrange( 0, round( WIDTH ) )
-		randY = random.randrange( 0, round( HEIGHT ) )
+		if MODIFIER < 1:
+			halfX = round( WIDTH * MODIFIER )
+			halfY = round( HEIGHT * MODIFIER )
+			randX = random.randrange( int( halfX * 0.5 ), int( WIDTH - ( halfX * 0.5 ) ) )
+			randY = random.randrange( int( halfY * 0.5 ), int( HEIGHT - ( halfY * 0.5 ) ) )
+		else:
+			randX = random.randrange( 0, WIDTH )
+			randY = random.randrange( 0, HEIGHT )
 		pixels.append( [randX, randY] )
 	return pixels
 
-match MODE:
+mode = int( input( "Enter mode: " ) )
+match mode:
 	case 0:
 		PixelList = CalcSquare()
 	case 1:
