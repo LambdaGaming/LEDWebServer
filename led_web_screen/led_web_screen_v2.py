@@ -1,5 +1,3 @@
-# Version 2 of the Screen Color Capture program. Uses a websocket to constantly update the lights at a higher frequency than what the original program can do.
-
 from PIL import ImageGrab
 from websockets.sync.client import connect
 import random
@@ -8,6 +6,7 @@ import time
 MODIFIER = 0.5 # Increase or decrease area of the screen without needing a specific number of pixels
 WIDTH = 1920
 HEIGHT = 1080
+RES_OVERRIDE = None # Override box where pixels are read from. Format: ( left_x, top_y, right_x, bottom_y ) or None
 NUM_LEDS = 200
 CENTER_W = WIDTH * 0.5
 CENTER_H = HEIGHT * 0.5
@@ -58,7 +57,7 @@ match mode:
 with connect( "ws://colorselector.local:81" ) as ws:
 	try:
 		while True:
-			pixel = ImageGrab.grab().load()
+			pixel = ImageGrab.grab( bbox = RES_OVERRIDE ).load()
 			data = []
 			count = 0
 			for p in PixelList:
@@ -67,7 +66,7 @@ with connect( "ws://colorselector.local:81" ) as ws:
 				data.extend( ( color[0], color[1], color[2] ) )
 				count += 1
 			ws.send( bytearray( data ) )
-			time.sleep( 0.01 )
+			time.sleep( 0.016 ) # ~60 FPS
 	except KeyboardInterrupt:
 		ws.close()
 		print( "Connection closed." )

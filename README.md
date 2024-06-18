@@ -20,7 +20,11 @@ This is the main project that started out with some experiments on a cheap fairy
   - Some examples can be found [here](led_web/examples.lua)
 
 # Screen Color Capture (led_web_screen)
-Python program that reads the color of random pixels on the user's screen and applies them to the LED string every 10 seconds. Having the LED string setup in a dark room while playing games or watching videos with unique color pallets is surprisingly atmospheric.
+## V1
+Python 3.8+ program that reads the color of random pixels on the user's screen and applies them to the LED string every 10 seconds. Works best when image on screen is static or very slow moving, with little to no rapid color changes.
+
+## V2
+Python 3.10+ program that reads the color of pixels on the user's screen through multiple different methods, and applies them to the LED string every 10 milliseconds through a websocket connection. Images on screen that are moving quickly but steadily work well with this version.
 
 # Color Voice Input (led_speech)
 Android app written in Kotlin that takes a voice input and applies a color if the input matches a color from a predefined list.
