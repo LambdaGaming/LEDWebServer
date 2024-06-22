@@ -6,7 +6,7 @@ import time
 MODIFIER = 0.5 # Increase or decrease area of the screen without needing a specific number of pixels
 WIDTH = 1920
 HEIGHT = 1080
-RES_OVERRIDE = None # Override box where pixels are read from. Format: ( left_x, top_y, right_x, bottom_y ) or None
+RES_OVERRIDE = None # Override box where pixels are read from. Format: ( left_x, top_y, right_x, bottom_y ) or None; Example: ( 0, 1080, 2160, 1920 )
 NUM_LEDS = 200
 CENTER_W = WIDTH * 0.5
 CENTER_H = HEIGHT * 0.5
@@ -44,13 +44,22 @@ def CalcRandomPixels():
 		pixels.append( [randX, randY] )
 	return pixels
 
-def CalcLine():
+def CalcLineHorizontal():
 	pixels = []
 	half = int( NUM_LEDS * 0.5 )
 	for i in range( half ):
 		pixels.append( [CENTER_W - i, CENTER_H] )
 	for i in range( half ):
 		pixels.append( [CENTER_W + i, CENTER_H] )
+	return pixels
+
+def CalcLineVertical():
+	pixels = []
+	half = int( NUM_LEDS * 0.5 )
+	for i in range( half ):
+		pixels.append( [CENTER_W, CENTER_H - i] )
+	for i in range( half ):
+		pixels.append( [CENTER_W, CENTER_H + i] )
 	return pixels
 
 mode = int( input( "Enter mode: " ) )
@@ -60,7 +69,9 @@ match mode:
 	case 1:
 		PixelList = CalcRandomPixels()
 	case 2:
-		PixelList = CalcLine()
+		PixelList = CalcLineHorizontal()
+	case 3:
+		PixelList = CalcLineVertical()
 	case _:
 		print( "Invalid mode set" )
 		exit()
