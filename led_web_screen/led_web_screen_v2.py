@@ -44,12 +44,23 @@ def CalcRandomPixels():
 		pixels.append( [randX, randY] )
 	return pixels
 
+def CalcLine():
+	pixels = []
+	half = int( NUM_LEDS * 0.5 )
+	for i in range( half ):
+		pixels.append( [CENTER_W - i, CENTER_H] )
+	for i in range( half ):
+		pixels.append( [CENTER_W + i, CENTER_H] )
+	return pixels
+
 mode = int( input( "Enter mode: " ) )
 match mode:
 	case 0:
 		PixelList = CalcSquare()
 	case 1:
 		PixelList = CalcRandomPixels()
+	case 2:
+		PixelList = CalcLine()
 	case _:
 		print( "Invalid mode set" )
 		exit()
