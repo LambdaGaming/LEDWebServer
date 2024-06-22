@@ -44,22 +44,18 @@ def CalcRandomPixels():
 		pixels.append( [randX, randY] )
 	return pixels
 
-def CalcLineHorizontal():
+def CalcLine( vertical ):
 	pixels = []
 	half = int( NUM_LEDS * 0.5 )
-	for i in range( half ):
-		pixels.append( [CENTER_W - i, CENTER_H] )
-	for i in range( half ):
-		pixels.append( [CENTER_W + i, CENTER_H] )
-	return pixels
-
-def CalcLineVertical():
-	pixels = []
-	half = int( NUM_LEDS * 0.5 )
-	for i in range( half ):
-		pixels.append( [CENTER_W, CENTER_H - i] )
-	for i in range( half ):
-		pixels.append( [CENTER_W, CENTER_H + i] )
+	if vertical:
+		start = CENTER_H - half
+	else:
+		start = CENTER_W - half
+	for i in range( NUM_LEDS ):
+		if vertical:
+			pixels.append( [CENTER_W, start + i] )
+		else:
+			pixels.append( [start + i, CENTER_H] )
 	return pixels
 
 mode = int( input( "Enter mode: " ) )
@@ -69,9 +65,9 @@ match mode:
 	case 1:
 		PixelList = CalcRandomPixels()
 	case 2:
-		PixelList = CalcLineHorizontal()
+		PixelList = CalcLine( False )
 	case 3:
-		PixelList = CalcLineVertical()
+		PixelList = CalcLine( True )
 	case _:
 		print( "Invalid mode set" )
 		exit()
