@@ -138,7 +138,7 @@ void setup()
       size_t numParams = request->params();
       for ( int i = 0; i < numParams; i++ )
       {
-        AsyncWebParameter *param = request->getParam( i );
+        const AsyncWebParameter *param = request->getParam( i );
         int color = param->value().toInt();
         String name = param->name();
         if ( name.startsWith( "led" ) )
