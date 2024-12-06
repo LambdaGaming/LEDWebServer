@@ -122,3 +122,13 @@ for i=1,200 do
 	Colors[i] = Colors[i] + sin2
 end
 PushColors();
+
+--Red and green alternating pattern with random white sparkles
+for i=0,199 do
+	local c = i % 2 == 0 and 0xFF00 or 0xFF0000
+	SetColor( i, c )
+end
+local rand = math.random( 0, 199 )
+SetColor( rand, 0xFFFFFF )
+PushColors()
+delay( 100 );
