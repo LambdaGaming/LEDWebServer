@@ -1,7 +1,7 @@
-This repository contains three projects that are all tied together, with the main one being led_web. 
+This repository contains three projects that are all tied together, with the main one being led_web. Various Arduino sketches that I made to experiment with the FastLED and IRremote libraries are also included in this repo.
 
 # LED Web Server (led_web)
-This is the main project that started out with some experiments on a cheap fairy light string. More projects formed and this one grew as I discovered new ways to control the lights. The project consists of a web server made for the ESP32, which is connected to the data cable of the aforementioned light string to act as a driver through the FastLED Arduino library. The current list of features for the server can be found below. My end goal with this project is to allow users to input custom animations dynamically, rather than having to compile it with the main Arduino code.
+This is the main project that started out with some experiments on a cheap fairy light string. It consists of a web server made for the ESP32, which is connected to the data line of the light string to act as a driver through the FastLED Arduino library. The current list of features for the server can be found below.
 - Local domain name: colorselector.local
 - The web page allows you to input a custom color that will apply to the LED string. There are multiple types of color inputs: 
   - Standard color picker
@@ -13,10 +13,10 @@ This is the main project that started out with some experiments on a cheap fairy
   - Example 3: `0:4` will do the same as example 2
 - Animations are also supported through Lua
   - Lua code is entered from the textbox on the second page, and sent to the server via a POST request
-  - There are several custom functions included that patch through to functions on the Arduino side, and documentation on them can be found [here](doc.md)
+  - There are several Lua functions included that patch through to functions on the Arduino side, and documentation on them can be found [here](doc.md)
   - The script can be run once or as a loop
-  - When saving information in the script, global variables need to be used; local variables will not be saved across loops or executions
-  - Scripts currently need to end with a semicolon due to the way they come through on the backend
+  - When saving information in the script, global variables need to be used, as local variables are overwritten every loop
+  - Scripts currently need to end with a semicolon due to the way they're processed on the backend
   - Some examples can be found [here](led_web/examples.lua)
 
 # Screen Color Capture (led_web_screen)
