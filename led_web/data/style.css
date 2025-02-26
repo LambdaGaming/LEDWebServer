@@ -41,3 +41,9 @@ button:hover {
 	font-size:12px;
 	margin:0 5px 0 5px;
 }
+#hexinput {
+	width:100px;
+}
+#or {
+	margin:10px;
+}

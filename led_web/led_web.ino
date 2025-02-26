@@ -126,6 +126,11 @@ void setup()
     ScriptActive = false;
     if ( request->hasParam( "color" ) )
     {
+      if ( request->hasParam( "brightness" ) )
+      {
+        int brightness = request->getParam( "brightness" )->value().toInt();
+        FastLED.setBrightness( brightness );
+      }
       int color = request->getParam( "color" )->value().toInt();
       for ( int i = 0; i < NUM_LEDS; i++ )
       {
@@ -157,17 +162,6 @@ void setup()
   server.on( "/anim", HTTP_POST, []( AsyncWebServerRequest *request ) {
     request->send( 200 );
   }, NULL, HandleBody );
-
-  server.on( "/settings", HTTP_POST, []( AsyncWebServerRequest * request ) {
-    digitalWrite( LED_BUILTIN, HIGH );
-    if ( request->hasParam( "brightness" ) )
-    {
-      int brightness = request->getParam( "brightness" )->value().toInt();
-      FastLED.setBrightness( brightness );
-    }
-    request->send( 200, "text/plain", "OK" );
-    digitalWrite( LED_BUILTIN, LOW );
-  } );
 
   server.on( "/input.js", HTTP_GET, []( AsyncWebServerRequest *request ) {
     request->send( SPIFFS, "/input.js", "text/javascript" );

@@ -21,6 +21,7 @@ function SendColor() {
 	var colorstring = document.getElementById( "colorinput" ).value
 	var hexstring = document.getElementById( "hexinput" ).value
 	var lednum = document.getElementById( "ledinput" ).value
+	var bright = document.getElementById( "brightnessinput" ).value
 	var color = `0x${colorstring.substring( 1 )}`
 
 	if ( hexstring.length > 0 ) {
@@ -80,6 +81,9 @@ function SendColor() {
 	}
 	else {
 		url += "color=" + Number( color )
+		if ( bright > 0 && bright != null ) {
+			url += `&brightness=${bright}`
+		}
 	}
 	SendURL( url )
 }
@@ -105,10 +109,4 @@ function RandomColor( single ) {
 		}
 		SendURL( url )
 	}
-}
-
-function ApplyBrightness() {
-	var value = document.getElementById( "brightnessinput" ).value
-	var url = `/settings?brightness=${value}`
-	SendURL( url )
 }
