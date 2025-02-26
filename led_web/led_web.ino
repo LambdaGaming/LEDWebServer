@@ -1,6 +1,6 @@
 #include <ESPAsyncWebServer.h>
 #include <ESPmDNS.h>
-#include <SPIFFS.h>
+#include <LittleFS.h>
 #include <WiFi.h>
 #include <WebSocketsServer.h>
 #include "lua_funcs.hpp"
@@ -85,7 +85,7 @@ void setup()
   webSocket.onEvent( WebSocketRequest );
   pinMode( LED_BUILTIN, OUTPUT );
   
-  if ( !SPIFFS.begin( true ) ) return;
+  if ( !LittleFS.begin( true ) ) return;
 
   while ( WiFi.status() != WL_CONNECTED )
   {
@@ -118,7 +118,7 @@ void setup()
   lua.Lua_register( "beatsin", ( const lua_CFunction ) &LuaBeatSin );
 
   server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
-    request->send( SPIFFS, "/index.html", String(), false );
+    request->send( LittleFS, "/index.html", String(), false );
   } );
 
   server.on( "/state", HTTP_POST, []( AsyncWebServerRequest *request ) {
@@ -164,11 +164,11 @@ void setup()
   }, NULL, HandleBody );
 
   server.on( "/input.js", HTTP_GET, []( AsyncWebServerRequest *request ) {
-    request->send( SPIFFS, "/input.js", "text/javascript" );
+    request->send( LittleFS, "/input.js", "text/javascript" );
   } );
 
   server.on( "/style.css", HTTP_GET, []( AsyncWebServerRequest *request ) {
-    request->send( SPIFFS, "/style.css", "text/css" );
+    request->send( LittleFS, "/style.css", "text/css" );
   } );
 
   server.begin();
