@@ -58,12 +58,7 @@ void WebSocketRequest( uint8_t num, WStype_t type, uint8_t *payload, size_t len 
           uint8_t b = payload[i + 3];
           leds[payload[i]] = CRGB( r, g, b );
         }
-        Serial.printf( "Received %d byte packet\n", len );
         FastLED.show();
-      }
-      else
-      {
-        Serial.println( "Received malformed packet!" );
       }
       break;
     }
