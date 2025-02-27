@@ -60,3 +60,6 @@
 
 # beatsin( bpm, lowest, highest, timebase, offset )
 - Functions exactly the same as the beatsin8 FastLED function
+
+# Stop()
+- Stops the execution of a looped script

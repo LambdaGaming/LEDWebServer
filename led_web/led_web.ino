@@ -15,7 +15,6 @@ AsyncWebServer server( 80 );
 WebSocketsServer webSocket = WebSocketsServer( 81 );
 LuaWrapper lua;
 String LuaScript = "";
-bool ScriptActive = false;
 
 void HandleBody( AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total )
 {
@@ -116,6 +115,7 @@ void setup()
   lua.Lua_register( "FadeToColor", ( const lua_CFunction ) &FadeToColor );
   lua.Lua_register( "beat", ( const lua_CFunction ) &LuaBeat );
   lua.Lua_register( "beatsin", ( const lua_CFunction ) &LuaBeatSin );
+  lua.Lua_register( "Stop", ( const lua_CFunction ) &Stop );
 
   server.on( "/", HTTP_GET, []( AsyncWebServerRequest *request ) {
     request->send( LittleFS, "/index.html", String(), false );

@@ -3,6 +3,7 @@
 
 #define NUM_LEDS 200
 CRGB leds[NUM_LEDS];
+bool ScriptActive = false;
 
 int DeconstructCRGB( CRGB color )
 {
@@ -126,4 +127,10 @@ int LuaBeatSin( lua_State *lua_state )
   uint8_t offset = ( uint8_t ) luaL_checkinteger( lua_state, 5 );
   lua_pushnumber( lua_state, ( lua_Number ) beatsin8( bpm, lowest, highest, timebase, offset ) );
   return 1;
+}
+
+int Stop( lua_State *lua_state )
+{
+  ScriptActive = false;
+  return 0;
 }
