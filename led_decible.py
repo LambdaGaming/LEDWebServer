@@ -33,8 +33,11 @@ with connect( "ws://colorselector.local:81" ) as ws:
 		while True:
 			data = []
 			db = dbCounter()
-			finalDb = db ** 1.75 * 0.1
-			brightness = np.clip( round( finalDb ), 0, 255 )
+			if db > 0:
+				finalDb = round( db ** 1.73 * 0.1 )
+			else:
+				finalDb = 0
+			brightness = np.clip( finalDb, 0, 255 )
 			for i in range( NUM_LEDS ):
 				data.append( i )
 				data.extend( ( brightness, brightness, brightness ) )
