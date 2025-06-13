@@ -19,7 +19,7 @@ This is the main project that started out with some experiments on a cheap fairy
   - Scripts currently need to end with a semicolon due to the way they're processed on the backend
   - Some examples can be found [here](led_web/examples.lua)
 
-# Screen Color Capture (led_web_screen)
+# Screen Color Capture (led_screencap)
 ## V1
 Python 3.8+ program that reads the color of random pixels on the user's screen and applies them to the LED string every 10 seconds. Works best when image on screen is static or very slow moving, with little to no rapid color changes.
 
@@ -28,3 +28,6 @@ Python 3.10+ program that reads the color of pixels on the user's screen through
 
 # Color Voice Input (led_speech)
 Android app written in Kotlin that takes a voice input and applies a color if the input matches a color from a predefined list.
+
+# Decibel Brightness
+Python 3 program that sets the brightness of an LED string based on the decibel level of the default input device.
