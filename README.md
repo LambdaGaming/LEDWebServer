@@ -29,5 +29,5 @@ Python 3.10+ program that reads the color of pixels on the user's screen through
 # Color Voice Input (led_speech)
 Android app written in Kotlin that takes a voice input and applies a color if the input matches a color from a predefined list.
 
-# Decibel Brightness
+# Decibel Brightness (led_decibel)
 Python 3 program that sets the brightness of an LED string based on the decibel level of the default input device.
