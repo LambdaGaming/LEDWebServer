@@ -1,4 +1,5 @@
-# Python 3.8+ program that takes colors from the screen and applies it to the LED string
+# Python 3.8+ program that reads the color of random pixels on the user's screen and applies them to the LED string every 10 seconds.
+# Works best when image on screen is static or very slow moving, with little to no rapid color changes.
 
 from PIL import ImageGrab
 import requests

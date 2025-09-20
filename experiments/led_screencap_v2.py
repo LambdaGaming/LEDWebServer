@@ -1,3 +1,7 @@
+# Python 3.10+ program that reads the color of pixels on the user's screen through multiple different methods,
+# and applies them to the LED string every 10 milliseconds through a websocket connection.
+# Images on screen that are moving quickly but steadily work well with this version.
+
 from PIL import ImageGrab
 from websockets.sync.client import connect
 import random
