@@ -67,6 +67,16 @@ local b = math.floor( math.abs( 50 * math.sin( ( millis() * 0.001 ) * 0.5 ) ) )
 SetBrightness( b )
 SetSolidColor( 0xFF5900 );
 
+--Single color pulsating that changes color after every pulse
+Index = Index or 1
+local colors = { 0xFF0000, 0xFF00, 0xFF, 0xFF5900, 0xFFFF00, 0xFF00FF, 0xFFFF }
+local b = math.floor( math.abs( 50 * math.sin( ( millis() * 0.001 ) * 0.5 ) ) )
+if b == 0 then
+	Index = Index < #colors and Index + 1 or 1
+end
+SetBrightness( b )
+SetSolidColor( colors[Index] );
+
 --Port of the Cylon FastLED example, minus the fading
 Hue = Hue or 0
 for i=0,199 do
