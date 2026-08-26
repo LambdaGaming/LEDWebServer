@@ -21,3 +21,6 @@
 
 # Experiments
 There are various [experimental programs](experiments) included that interface with the web server and provide different ways of controlling the lights. While these programs are functional, they aren't complete or designed for regular use, so they are probably more useful as examples or bases to work off of.
+
+# Contributing
+ Contributions are welcome! Please read through the [guidelines](https://lambdagaming.github.io/guides/contributing) before submitting an issue or pull request.
